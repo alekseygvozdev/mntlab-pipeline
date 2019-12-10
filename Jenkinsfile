@@ -9,16 +9,14 @@ node{
     }
 
     stage('Building code') {
-        sh 'chmod +x gradlew'
-        sh './gradlew build'
-//        sh "${path}gradle build"
+        sh "${path}gradle build"
     }
 
     stage ('Testing code'){
       parallel (
-        'Unit Tests': { sh "./gradlew cucumber"},
-        'Jacoco Tests': { sh "./gradlew jacocoTestReport"},
-        'Cucumber Tests': { sh "./gradlew test"}
+        'Unit Tests': { sh "${path}gradle cucumber"},
+        'Jacoco Tests': { sh "${path}gradle jacocoTestReport"},
+        'Cucumber Tests': { sh "${path}gradle test"}
       )
     }
 
