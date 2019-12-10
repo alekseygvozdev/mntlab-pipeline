@@ -1,17 +1,17 @@
-#!/usr/bin/env groovy
+#!groovy
 
 def student = "agvozdev"
 def path="/opt/gradle/gradle-3.4.1/bin/"
 
 node{
     stage ('Preparation (Checking out)'){
-    git branch: "${student}", url: 'https://github.com/alekseygvozdev/mntlab-pipeline'
+    git url: 'https://github.com/alekseygvozdev/mntlab-pipeline', branch: "${student}"
     }
 
     stage('Building code') {
         sh 'chmod +x gradlew'
         sh './gradlew build'
-//        sh "${path} gradle build"
+//        sh "${path}gradle build"
     }
 
     stage ('Testing code'){
